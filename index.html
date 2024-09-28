@@ -5,10 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe Game</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <h1>Let's start the game!</h1>
-    
+    <h1 class="welcoming">Welcome to Tic Tac Toe</h1>
+
+    <!-- Player name form -->
+    <div class="player-form">
+        <label for="player1">Player 1 Name (O player):</label>
+        <input type="text" id="player1" placeholder="Name">
+        
+        <label for="player2">Player 2 Name (X player):</label>
+        <input type="text" id="player2" placeholder="Name">
+
+        <button id="play-btn">Play</button>
+    </div>
+
+    <!-- Gameboard container (initially hidden) -->
+    <div class="gameboard-container">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+    </div>
 </body>
 </html>

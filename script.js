@@ -114,8 +114,62 @@ class Player {
 }
 
 // Starting the game (you may want to encapsulate this logic too)
-const player1 = new Player("Alice", "O");
-const player2 = new Player("Bob", "X");
-const game = new Game(player1, player2);
-game.play();
+// const player1 = new Player("Alice", "O");
+// const player2 = new Player("Bob", "X");
+// const game = new Game(player1, player2);
+// game.play();
+document.addEventListener('DOMContentLoaded', () => {
+    const playButton = document.querySelector('#play-btn');
+    const player1Input = document.querySelector('#player1');
+    const player2Input = document.querySelector('#player2');
+    const gameboardContainer = document.querySelector('.gameboard-container');
+    const playerForm = document.querySelector('.player-form');
+    const tiles = document.querySelectorAll('.tile');
+    let game;
+    playButton.addEventListener("click", () => {
+        const player1Name = player1Input.value.trim();
+        const player2Name = player2Input.value.trim();
+        // validating both the names
+        if (player1Name === "" || player2Name === "") {
+            alert('please enter names for both players');
+            return;
+        }
+        playerForm.style.display = 'none';
+        const welcomeHeader = document.querySelector(".welcoming");
+        welcomeHeader.style.display = 'none';
+        gameboardContainer.style.visibility = 'visible'; // make the gameboard visible
+        const player1 = new Player(player1Name, "O");
+        const player2 = new Player(player2Name, "X");
+        game = new Game(player1, player2);
+        // verify that the name of players are taken correctly from the form
+        console.log(`name of player 1: ${player1.name} with symbol ${player1.symbol}`);
+        console.log(`name of player 2: ${player2.name} with symbol ${player2.symbol}`);
+        initializeTileListeners(game, tiles);
+    });
+    function initializeTileListeners(game, tiles) {
+        let currentPlayer = game.currentPlayer;
 
+        tiles.forEach((tile, index) => {
+            tile.addEventListener('click', () => {
+                if(tile.textContent === "") {
+                    tile.textContent = currentPlayer.symbol;
+                    game.board.board[Math.floor(index/3)][index % 3] = currentPlayer.symbol;
+                    if(game.board.checkWinner(currentPlayer)) {
+                        setTimeout(() => {
+                            alert(`${currentPlayer.name} wins!`);
+                        }, 100);
+                        return;
+                    }
+                    if(game.board.isBoardFull()) {
+                        setTimeout(() => {
+                            alert("It's a tie!");
+                        }, 100);
+                        return;
+                    }
+                    game.switchPlayer();
+                    currentPlayer = game.currentPlayer;
+                }
+            });
+        });
+    }
+})

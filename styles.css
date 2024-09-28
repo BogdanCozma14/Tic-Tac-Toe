@@ -1,0 +1,69 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100vh;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: blueviolet;
+}
+h1 {
+    margin-top: 3rem;
+}
+.player-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 2rem;
+}
+.gameboard-container {
+    /* absolute positioning and centering */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    gap: 1rem;
+    padding: 10px;
+    /* making it invisible for start */
+    visibility: hidden;
+}
+input {
+    padding: 8px;
+    font-size: 1rem;
+    width: 200px;
+}
+#play-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .3s;
+}
+.play-btn:hover {
+    transition: .2s;
+    background-color: #218838;
+}
+.tile {
+    background-color: #fff;
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 1rem;
+    box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.6);
+}
