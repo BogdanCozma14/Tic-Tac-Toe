@@ -9,15 +9,16 @@
 </head>
 <body>
     <h1 class="welcoming">Welcome to Tic Tac Toe</h1>
-
-    <!-- Player name form -->
     <div class="player-form">
-        <label for="player1">Player 1 Name (O player):</label>
-        <input type="text" id="player1" placeholder="Name">
-        
-        <label for="player2">Player 2 Name (X player):</label>
-        <input type="text" id="player2" placeholder="Name">
-
+        <h1>Enter the name of the players</h1>
+        <div class="name-field">
+            <input type="text" id="player1" required>
+            <label for="player1">Name for player 1 (O player)</label>
+        </div>
+        <div class="name-field">
+            <input type="text" id="player2" required>
+            <label for="player2">Name for player 2 (X player)</label>
+        </div>
         <button id="play-btn">Play</button>
     </div>
 

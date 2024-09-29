@@ -1,3 +1,9 @@
+// function to get the custom red variable I defined in the css
+function GetCssColorVariable(variable) {
+    return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+}
+// get the custom red color inside a variable
+const redColor = GetCssColorVariable('--red');
 // IIFE for GameBoard
 const GameBoard = (function() {
     // This is a factory for creating a single GameBoard instance
@@ -97,7 +103,6 @@ const Game = (function() {
             this.switchPlayer();
         }
     };
-
     return Game; // Returns the Game constructor
 })();
 
@@ -113,11 +118,6 @@ class Player {
     }
 }
 
-// Starting the game (you may want to encapsulate this logic too)
-// const player1 = new Player("Alice", "O");
-// const player2 = new Player("Bob", "X");
-// const game = new Game(player1, player2);
-// game.play();
 document.addEventListener('DOMContentLoaded', () => {
     const playButton = document.querySelector('#play-btn');
     const player1Input = document.querySelector('#player1');
@@ -153,6 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
             tile.addEventListener('click', () => {
                 if(tile.textContent === "") {
                     tile.textContent = currentPlayer.symbol;
+                    tile.style.color = redColor;
+                    // adding the class for the animation tile
+                    tile.classList.add('scale-up');
+                    // remove the class after the animation tile completes
+                    setTimeout(() => {
+                        tile.classList.remove('scale-up');
+                    }, 300);
                     game.board.board[Math.floor(index/3)][index % 3] = currentPlayer.symbol;
                     if(game.board.checkWinner(currentPlayer)) {
                         setTimeout(() => {
